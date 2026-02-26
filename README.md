@@ -1,2 +1,955 @@
-# forma.github.io
-Formδ website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formδ Manufacturing — Contract Manufacturing & Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00e676;
+    --green-dim: #00c853;
+    --green-dark: #00701e;
+    --dark: #0a0a0a;
+    --dark-2: #111111;
+    --dark-3: #1a1a1a;
+    --mid: #2a2a2a;
+    --light: #f5f4f0;
+    --light-2: #e8e7e3;
+    --text-dim: #888;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.03em;
+    color: var(--light);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--green); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--dark);
+    background: var(--green);
+    padding: 0.6rem 1.4rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--light);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-h1 .accent { color: var(--green); }
+
+  .hero-p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 420px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--dark);
+    background: var(--green);
+    padding: 1rem 2rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--light);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 1rem 2rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-visual {
+    position: absolute;
+    inset: 0;
+    background: var(--dark-2);
+    overflow: hidden;
+  }
+
+  /* Animated grid lines */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,230,118,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,230,118,0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridScroll 20s linear infinite;
+  }
+
+  @keyframes gridScroll {
+    from { background-position: 0 0; }
+    to { background-position: 40px 40px; }
+  }
+
+  /* Big delta symbol */
+  .hero-delta {
+    position: absolute;
+    font-family: var(--font-display);
+    font-size: 28vw;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,230,118,0.15);
+    user-select: none;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+    animation: pulseDelta 6s ease-in-out infinite;
+  }
+
+  @keyframes pulseDelta {
+    0%, 100% { -webkit-text-stroke-color: rgba(0,230,118,0.12); }
+    50% { -webkit-text-stroke-color: rgba(0,230,118,0.28); }
+  }
+
+  /* Floating stats */
+  .hero-stats {
+    position: absolute;
+    bottom: 3rem;
+    left: 4rem;
+    display: flex;
+    gap: 3rem;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── MARQUEE ─── */
+  .marquee-band {
+    background: var(--green);
+    overflow: hidden;
+    padding: 0.9rem 0;
+  }
+
+  .marquee-inner {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    padding: 0 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .marquee-dot {
+    color: rgba(0,0,0,0.3);
+    padding: 0 0.5rem;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    background: var(--light);
+    color: var(--dark);
+    padding: 8rem 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--green-dark);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--light-2);
+  }
+
+  .service-card {
+    background: var(--light);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--green-dark);
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover { background: white; }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--green-dark);
+    margin-bottom: 2rem;
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--dark-2);
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  #about .section-eyebrow { color: var(--green); }
+  #about .section-eyebrow::before { background: var(--green); }
+  #about .section-title { color: var(--light); }
+
+  .about-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #aaa;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .about-body strong { color: var(--light); font-weight: 500; }
+
+  .about-right {
+    position: relative;
+  }
+
+  .about-visual {
+    background: var(--dark-3);
+    border: 1px solid rgba(0,230,118,0.15);
+    padding: 3rem;
+    position: relative;
+  }
+
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 3rem;
+    width: 4rem; height: 3px;
+    background: var(--green);
+  }
+
+  .value-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .value-check {
+    color: var(--green);
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .value-text {}
+
+  .value-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--light);
+    margin-bottom: 0.25rem;
+  }
+
+  .value-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--light);
+    color: var(--dark);
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  #contact .section-eyebrow { color: var(--green-dark); }
+  #contact .section-eyebrow::before { background: var(--green-dark); }
+  #contact .section-title { color: var(--dark); }
+
+  .contact-info-text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #555;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .contact-detail-icon {
+    color: var(--green-dark);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-label {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--dark);
+    background: white;
+    border: 1px solid var(--light-2);
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--green-dark);
+  }
+
+  .form-textarea { resize: vertical; min-height: 130px; }
+
+  .form-submit {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--green);
+    border: none;
+    padding: 1.1rem 2.5rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.03em;
+    color: var(--light);
+  }
+
+  .footer-logo span { color: var(--green); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-dim);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 280px; }
+    .hero-left { padding: 4rem 2rem; }
+    .hero-stats { left: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    #about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+    #contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+    #services { padding: 5rem 2rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 2rem; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Form<span>δ</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Contract Manufacturing & Automation</div>
+    <h1 class="hero-h1">
+      Built to<br>
+      <span class="accent">Precision.</span><br>
+      Driven by<br>
+      Innovation.
+    </h1>
+    <p class="hero-p">Formδ Manufacturing delivers world-class contract manufacturing and intelligent automation integration — engineered for reliability, scalability, and performance.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start a Project</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">On-Time Delivery</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="grid-bg"></div>
+      <div class="hero-delta">Δ</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band">
+  <div class="marquee-inner">
+    <span class="marquee-item">Contract Manufacturing<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Automation Integration<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">PLC Programming<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Precision Machining<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Robotics<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Quality Assurance<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Rapid Prototyping<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Systems Design<span class="marquee-dot">◆</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Contract Manufacturing<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Automation Integration<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">PLC Programming<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Precision Machining<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Robotics<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Quality Assurance<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Rapid Prototyping<span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Systems Design<span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">End-to-End<br>Manufacturing Solutions</h2>
+    </div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Contract Manufacturing</div>
+      <p class="service-desc">Full-scale production runs from prototype to high-volume output. We manage the entire manufacturing process with strict quality control and on-time delivery guarantees.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">🤖</div>
+      <div class="service-title">Automation Integration</div>
+      <p class="service-desc">Custom automation systems designed and integrated into your production floor. From conveyor systems to robotic cells, we make your operations smarter and faster.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">💡</div>
+      <div class="service-title">PLC & Controls Engineering</div>
+      <p class="service-desc">Expert PLC programming, SCADA development, and industrial controls engineering. We build reliable, maintainable control systems for complex manufacturing environments.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon">🔩</div>
+      <div class="service-title">Precision Machining</div>
+      <p class="service-desc">CNC milling, turning, and fabrication to tight tolerances. We produce precision components for demanding industries including aerospace, medical, and industrial equipment.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">05</div>
+      <div class="service-icon">🏗️</div>
+      <div class="service-title">Systems Design & Engineering</div>
+      <p class="service-desc">Concept to commissioning — our engineering team provides mechanical, electrical, and systems design for custom machinery and automated production lines.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">06</div>
+      <div class="service-icon">📐</div>
+      <div class="service-title">Rapid Prototyping</div>
+      <p class="service-desc">Fast-track your product development with rapid prototyping services. We iterate quickly so you can validate designs and reach production sooner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <div class="section-eyebrow reveal">About Formδ</div>
+    <h2 class="section-title reveal">Manufacturing<br>Partners You<br>Can Count On</h2>
+    <p class="about-body reveal">
+      Formδ Manufacturing is a <strong>full-service contract manufacturer and automation integrator</strong> committed to delivering engineered solutions that transform production capabilities.<br><br>
+      We work as a <strong>true partner</strong> — embedded in your challenges, aligned with your goals, and accountable for results. Whether you're scaling production, automating a process, or building something entirely new, Formδ brings the expertise to make it happen.
+    </p>
+    <a href="#contact" class="btn-primary reveal" style="display:inline-block;">Work With Us</a>
+  </div>
+
+  <div class="about-right reveal">
+    <div class="about-visual">
+      <ul class="value-list">
+        <li class="value-item">
+          <span class="value-check">▲</span>
+          <div class="value-text">
+            <div class="value-title">Engineering-First Approach</div>
+            <div class="value-desc">Every project is handled by experienced engineers who understand both manufacturing processes and automation systems.</div>
+          </div>
+        </li>
+        <li class="value-item">
+          <span class="value-check">▲</span>
+          <div class="value-text">
+            <div class="value-title">Scalable Capacity</div>
+            <div class="value-desc">From low-volume prototype runs to high-volume production, our flexible capacity adapts to your needs as you grow.</div>
+          </div>
+        </li>
+        <li class="value-item">
+          <span class="value-check">▲</span>
+          <div class="value-text">
+            <div class="value-title">Proven Track Record</div>
+            <div class="value-desc">Over 200 completed projects across diverse industries. We show up, deliver, and stand behind our work.</div>
+          </div>
+        </li>
+        <li class="value-item">
+          <span class="value-check">▲</span>
+          <div class="value-text">
+            <div class="value-title">Turnkey Solutions</div>
+            <div class="value-desc">Design, build, integrate, and commission — one partner for the entire lifecycle of your manufacturing project.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <div class="section-eyebrow reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Let's Build<br>Something Great</h2>
+    <p class="contact-info-text reveal">Tell us about your project. Whether you need a contract manufacturing partner, automation integrator, or just want to explore what's possible — we'd love to hear from you.</p>
+
+    <div class="contact-details reveal">
+      <div class="contact-detail">
+        <span class="contact-detail-icon">◆</span>
+        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f767179705f79706d727e727e716a797e7c6b6a6d767178317c7072">[email&#160;protected]</a></span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-icon">◆</span>
+        <span>+1 (555) 000-0000</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-icon">◆</span>
+        <span>Mon–Fri, 7:00 AM – 5:00 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right reveal">
+    <form class="form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" placeholder="Jane" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company</label>
+        <input class="form-input" type="text" placeholder="Acme Corp">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="jane@acme.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Service of Interest</label>
+        <select class="form-select">
+          <option value="">Select a service...</option>
+          <option>Contract Manufacturing</option>
+          <option>Automation Integration</option>
+          <option>PLC & Controls Engineering</option>
+          <option>Precision Machining</option>
+          <option>Systems Design & Engineering</option>
+          <option>Rapid Prototyping</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Details</label>
+        <textarea class="form-textarea" placeholder="Describe your project, timeline, and any key requirements..."></textarea>
+      </div>
+      <button class="form-submit" type="submit">Send Message →</button>
+      <div id="form-success" style="display:none; color:#00701e; font-size:0.9rem; font-weight:500; padding-top:0.5rem;">
+        ✓ Message sent! We'll be in touch within one business day.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Form<span>δ</span> Manufacturing</div>
+  <p class="footer-copy">© 2025 Formδ Manufacturing. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = '
